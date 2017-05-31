@@ -3,7 +3,7 @@
 import { NativeModules } from 'react-native';
 
 type FieldType = 'phoneNumbers' | 'emails' | 'addresses' | 'socialProfiles' |
-                 'instantMessageAddresses' | 'urls' | 'dates' | 'relations';
+                 'instantMessageAddresses' | 'urls' | 'dates' | 'relationships';
 
 type Options = {
   pageSize?: number,
@@ -100,7 +100,7 @@ type Contact = {
     id: number,
     label: string,
   }[],
-  relations?: {
+  relationsips?: {
     label: string,
     name?: string,
     id: number,
@@ -143,4 +143,4 @@ export const SOCIAL_PROFILES = 'socialProfiles';
 export const IM_ADDRESSES = 'instantMessageAddresses';
 export const URLS = 'urlAddresses';
 export const DATES = 'dates';
-export const RELATIONS = 'relations';
+export const RELATIONSHIPS = 'relationships';
