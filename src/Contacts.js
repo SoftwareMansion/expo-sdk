@@ -1,6 +1,6 @@
 // @flow
 
-import { NativeModules } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
 
 type FieldType = 'phoneNumbers' | 'emails' | 'addresses' | 'socialProfiles' |
                  'instantMessageAddresses' | 'urls' | 'dates' | 'relationships';
@@ -119,11 +119,30 @@ const DEFAULT_PAGE_SIZE = 100;
 export async function getContactsAsync(
   { pageSize = DEFAULT_PAGE_SIZE, pageOffset = 0, fields = [] }: Options = {}
 ): Promise<Response> {
+  if (Platform.OS === 'ios' && (fields.includes(IMAGE) || fields.includes(THUMBNAIL))) {
+    console.warn('Mind that fetching images for all contacts might be time and resource consuming. ' +
+      'Consider using getContactByIdAsync() to get data for a single contact.');
+  }
   return await NativeModules.ExponentContacts.getContactsAsync({
     pageSize,
     pageOffset,
     fields,
   });
+}
+
+export async function getContactByIdAsync(
+  { fields = [], id = null }: Options = {}
+): Promise<Response> {
+  if (id === null) {
+    Promise.reject('Please pass an ID as a parameter');
+  } else {
+      return await NativeModules.ExponentContacts.getContactsAsync({
+      pageSize: 1,
+      pageOffset: 0,
+      fields,
+      id,
+    });
+  }
 }
 
 export const PHONE_NUMBERS = 'phoneNumbers';
