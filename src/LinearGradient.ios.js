@@ -35,10 +35,10 @@ export default class LinearGradient extends Component {
     // support for current react-native-linear-gradient api
     let startProp = start;
     let endProp = end;
-    if (start && start.x && start.y) {
+    if (start && start.x !== undefined && start.y !== undefined) {
         startProp = [start.x, start.y];
     }
-    if (end && end.x && end.y) {
+    if (end && end.x !== undefined && end.y !== undefined) {
         endProp = [end.x, end.y];
     }
 
