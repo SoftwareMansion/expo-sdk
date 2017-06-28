@@ -159,6 +159,9 @@ module.exports = {
   get ScreenOrientation() {
     return require('./ScreenOrientation');
   },
+  get Speech() {
+    return require('./Speech');
+  },
 };
 
 // add deprecated `Components` module
