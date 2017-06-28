@@ -210,6 +210,14 @@ async function _askPermissionForWatchAsync(success, error, options, watchId) {
   }
 }
 
+async function geocodeAsync(address: string) {
+  return ExponentLocation.geocodeAsync(address);
+}
+
+async function reverseGeocodeAsync(options: {latitude: number, longitude: number}) {
+  return ExponentLocation.reverseGeocodeAsync(options);
+}
+
 // Polyfill: navigator.geolocation.watchPosition
 function watchPosition(
   success: GeoSuccessCallback,
@@ -321,6 +329,8 @@ const Location = {
   watchPositionAsync,
   getHeadingAsync,
   watchHeadingAsync,
+  geocodeAsync,
+  reverseGeocodeAsync,
 
   // For internal purposes  LocationEventEmitter,
   EventEmitter: LocationEventEmitter,
