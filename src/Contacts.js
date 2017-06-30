@@ -12,7 +12,7 @@ type Options = {
 };
 
 type Contact = {
-  id: number,
+  id: string,
   contactType: string,
   name: string,
   firstName?: string,
@@ -39,7 +39,7 @@ type Contact = {
     email?: string,
     primary?: boolean,
     label: string,
-    id: number,
+    id: string,
   }[],
   phoneNumbers?: {
     number?: string,
@@ -47,7 +47,7 @@ type Contact = {
     digits?: string,
     countryCode?: string,
     label: string,
-    id: number,
+    id: string,
   }[],
   addresses?: {
     street?: string,
@@ -59,7 +59,7 @@ type Contact = {
     poBox?: string,
     isoCountryCode?: string,
     label: string,
-    id: number,
+    id: string,
   }[],
   socialProfiles?: {
     service?: string,
@@ -68,19 +68,19 @@ type Contact = {
     username?: string,
     userId?: string,
     label: string,
-    id: number,
+    id: string,
   }[],
   instantMessageAddresses?: {
     service?: string,
     username?: string,
     localizedService?: string,
     label: string,
-    id: number,
+    id: string,
   }[],
   urls?: {
     label: string,
     url?: string,
-    id: number,
+    id: string,
   }[],
   company?: string,
   jobTitle?: string,
@@ -97,13 +97,13 @@ type Contact = {
     day?: number,
     month?: number,
     year?: number,
-    id: number,
+    id: string,
     label: string,
   }[],
   relationsips?: {
     label: string,
     name?: string,
-    id: number,
+    id: string,
   }[],
 };
 
