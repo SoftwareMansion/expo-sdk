@@ -215,20 +215,26 @@ async function _askPermissionForWatchAsync(success, error, options, watchId) {
 async function geocodeAsync(address: string) {
   return ExponentLocation.geocodeAsync(address)
       .catch(error => {
-        if (!googleApiKey) {
-          throw new Error(error.message + ' Please set a Google API Key to use geocoding');
+        if (Platform.OS === 'android') {
+          if (!googleApiKey) {
+            throw new Error(error.message + ' Please set a Google API Key to use geocoding');
+          }
+          return _googleGeocodeAsync(address);
         }
-        return _googleGeocodeAsync(address);
+        throw error;
       });
 }
 
 async function reverseGeocodeAsync(options: {latitude: number, longitude: number}) {
   return ExponentLocation.reverseGeocodeAsync(options)
       .catch(error => {
-        if (!googleApiKey) {
-          throw new Error(error.message + ' Please set a Google API Key to use geocoding');
+        if (Platform.OS === 'android') {
+          if (!googleApiKey) {
+            throw new Error(error.message + ' Please set a Google API Key to use geocoding');
+          }
+          return _googleReverseGeocodeAsync(options);
         }
-        return _googleReverseGeocodeAsync(options);
+        throw error;
       });
 }
 
